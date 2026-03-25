@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Планировщик задач на день</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .row1 { background-color: #f0f0f0; }
+        .row2 { background-color: #ffffff; }
+        ul { list-style: decimal; padding-left: 20px; }
+        li { padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Задачи на сегодня</h1>
+
+    {% if categorized_tasks %}
+        {% for category, tasks in categorized_tasks.items %}
+            <h2>{{ category }}</h2>
+            <ul>
+                {% for task in tasks %}
+                    <li class="{% cycle 'row1' 'row2' %} {% if task.completed %}completed{% endif %}">
+                        {{ task.time }} - {{ task.title }}
+                        {% if task.completed %}(выполнено){% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p>На сегодня задач нет</p>
+    {% endif %}
+</body>
+</html>
