@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать мероприятие</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .participant-form { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<h2>Создать мероприятие</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ event_form.as_p }}
+    {{ participant_formset.management_form }}
+
+    <h3>Участники</h3>
+    <div id="participants">
+        {% for form in participant_formset %}
+            <div class="participant-form">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" id="add-participant">Добавить участника</button>
+    <br><br>
+    <input type="submit" value="Сохранить">
+</form>
+
+<script>
+$(document).ready(function(){
+    let totalForms = parseInt($('#id_form-TOTAL_FORMS').val());
+
+    $('#add-participant').click(function(){
+        let newForm = $('#participants .participant-form:first').clone();
+        newForm.find('input').val('');
+        
+        // Обновляем индекс для формы
+        newForm.find(':input').each(function(){
+            let name = $(this).attr('name').replace(/form-\d+-/, 'form-' + totalForms + '-');
+            let id = 'id_' + name;
+            $(this).attr({'name': name, 'id': id});
+        });
+
+        $('#participants').append(newForm);
+        totalForms++;
+        $('#id_form-TOTAL_FORMS').val(totalForms);
+    });
+});
+</script>
+</body>
+</html>
