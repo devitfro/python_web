@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} фильм</title>
+</head>
+<body>
+<h2>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} фильм</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Сохранить">
+</form>
+<a href="{% url 'movie_list' %}">Назад к списку</a>
+</body>
+</html>

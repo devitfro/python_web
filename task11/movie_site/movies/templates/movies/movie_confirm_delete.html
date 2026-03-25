@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удалить фильм</title>
+</head>
+<body>
+<h2>Удалить фильм: "{{ movie.title }}"?</h2>
+
+<p>Вы уверены, что хотите удалить этот фильм? Это действие невозможно отменить.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+    <a href="{% url 'movie_detail' movie.pk %}">Отмена</a>
+</form>
+</body>
+</html>

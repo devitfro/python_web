@@ -1,14 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{{ movie.title }}</title>
 </head>
 <body>
-<h2>{{ movie.title }}</h2>
-<img src="{{ movie.poster.url }}" width="300">
+<h1>{{ movie.title }}</h1>
+<img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="200">
 <p><strong>Дата выхода:</strong> {{ movie.release_date }}</p>
 <p><strong>Страна:</strong> {{ movie.country }}</p>
+<p><strong>Рейтинг:</strong> {{ movie.rating }}</p>
 <p>{{ movie.description }}</p>
-<a href="{% url 'home' %}">← Вернуться на главную</a>
+<a href="{% url 'movie_list' %}">Назад к списку</a>
 </body>
 </html>
