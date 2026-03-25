@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Spaghetti",
+        "desc": "Easy pasta",
+        "ingredients": [
+            "pasta",
+            "tomato"
+        ],
+        "steps": "boil and mix"
+    },
+    {
+        "id": 2,
+        "title": "Salad",
+        "desc": "Fresh salad",
+        "ingredients": [
+            "cucumber",
+            "tomato"
+        ],
+        "steps": "cut and mix"
+    }
+]
