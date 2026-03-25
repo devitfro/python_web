@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+<h2>{{ movie.title }}</h2>
+<img src="{{ movie.poster.url }}" width="300">
+<p><strong>Дата выхода:</strong> {{ movie.release_date }}</p>
+<p><strong>Страна:</strong> {{ movie.country }}</p>
+<p>{{ movie.description }}</p>
+<a href="{% url 'home' %}">← Вернуться на главную</a>
+</body>
+</html>

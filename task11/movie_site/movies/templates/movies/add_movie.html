@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить фильм</title>
+</head>
+<body>
+<h2>Добавить фильм</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Сохранить">
+</form>
+<a href="{% url 'home' %}">← Вернуться на главную</a>
+</body>
+</html>

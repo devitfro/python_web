@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Фильмы</title>
+</head>
+<body>
+<h1>Список фильмов</h1>
+<a href="{% url 'add_movie' %}">Добавить фильм</a>
+<hr>
+<div style="display:flex; flex-wrap:wrap;">
+    {% for movie in movies %}
+        <div style="margin:10px; border:1px solid #ccc; padding:10px; width:200px;">
+            <a href="{% url 'movie_detail' movie.id %}">
+                <img src="{{ movie.poster.url }}" width="180" height="250">
+                <h3>{{ movie.title }}</h3>
+            </a>
+            <p>Дата выхода: {{ movie.release_date }}</p>
+            <p>Страна: {{ movie.country }}</p>
+        </div>
+    {% empty %}
+        <p>Фильмов пока нет.</p>
+    {% endfor %}
+</div>
+</body>
+</html>
