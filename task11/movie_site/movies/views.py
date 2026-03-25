@@ -44,11 +44,6 @@ def movie_delete(request, pk):
         return redirect('movie_list')
     return render(request, 'movies/movie_confirm_delete.html', {'movie': movie})
 
-# movies/views.py
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Movie, Review
-from .forms import MovieForm, ReviewForm
-
 # Просмотр фильма и отзывы
 def movie_detail(request, pk):
     movie = get_object_or_404(Movie, pk=pk)

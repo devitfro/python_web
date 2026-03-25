@@ -1,0 +1,237 @@
+/* Общие стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Кнопки */
+button, input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Формы */
+form {
+    margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Список фильмов на home.html */
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0;
+    list-style: none;
+}
+
+.movie-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+    padding: 10px;
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+
+.movie-card:hover {
+    transform: scale(1.03);
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.movie-card h3 {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.movie-card p {
+    margin: 3px 0;
+    font-size: 0.9em;
+}
+
+/* Список фильмов с деталями (movie_list.html ul) */
+ul.movies {
+    list-style: none;
+    padding: 0;
+}
+
+ul.movies li {
+    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+ul.movies li img {
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+/* Страница деталей фильма */
+.movie-detail {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.movie-detail p {
+    margin: 5px 0;
+}
+
+/* Отзывы */
+.reviews .card {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fefefe;
+}
+
+.reviews .card-header {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.reviews .card-body {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Ссылки "Редактировать" и "Удалить" */
+a.edit-link, a.delete-link {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #e74c3c;
+}
+
+a.edit-link:hover, a.delete-link:hover {
+    color: #c0392b;
+}
+
+/* Мелкие стили для заголовков форм */
+h2 {
+    margin-top: 20px;
+}
+
+/* Удаление отзывов */
+.review-delete {
+    background-color: #fff3f3;
+    border: 1px solid #e74c3c;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.review-delete .review-text {
+    font-size: 0.95em;
+    color: #c0392b;
+    margin-bottom: 10px;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancel {
+    text-decoration: none;
+    color: #555;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
+
+.btn-cancel:hover {
+    background-color: #e0e0e0;
+}
+
+/* Форма добавления отзыва */
+.review-form button.btn-add-review {
+    background-color: #3498db;
+    margin-top: 5px;
+}
+
+.review-form button.btn-add-review:hover {
+    background-color: #2980b9;
+}
+
+/* Карточки отзывов */
+.reviews .card {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fefefe;
+}
+
+.reviews .card-header {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.reviews .card-body {
+    font-size: 0.9em;
+    color: #555;
+}

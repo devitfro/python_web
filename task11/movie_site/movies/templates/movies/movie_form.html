@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} фильм</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
 </head>
 <body>
 <h2>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} фильм</h2>

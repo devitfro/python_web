@@ -1,28 +1,32 @@
-<h1>{{ movie.title }}</h1>
-<p>{{ movie.description }}</p>
-<p>Жанр: {{ movie.genre.name }}</p>
-<p>Дата: {{ movie.release_date }}</p>
-<p>Страна: {{ movie.country }}</p>
-<p>Рейтинг: {{ movie.rating }}</p>
-<p>Количество отзывов: {{ movie.reviews_count }}</p>
+<!-- Детали фильма -->
+<div class="movie-detail">
+    <h1>{{ movie.title }}</h1>
+    <p>{{ movie.description }}</p>
+    <p>Жанр: {{ movie.genre.name }}</p>
+    <p>Дата: {{ movie.release_date }}</p>
+    <p>Страна: {{ movie.country }}</p>
+    <p>Рейтинг: {{ movie.rating }}</p>
+    <p>Количество отзывов: {{ movie.reviews_count }}</p>
+</div>
 
 <hr>
+
 <h2>Отзывы</h2>
 
-<form method="post">
+<form method="post" class="review-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Добавить отзыв</button>
+    <button type="submit" class="btn-add-review">Добавить отзыв</button>
 </form>
 
 <div class="reviews">
     {% for review in reviews %}
         <div class="card">
-            <div class="card-header">{{ review.username }} | {{ review.created_at }}</div>
+            <div class="card-header">{{ review.username }} | {{ review.created_at|date:"d.m.Y H:i" }}</div>
             <div class="card-body">{{ review.text }}</div>
             <form action="{% url 'review_delete' movie_pk=movie.pk review_pk=review.pk %}" method="post">
                 {% csrf_token %}
-                <button type="submit">Удалить</button>
+                <button type="submit" class="btn-delete">Удалить</button>
             </form>
         </div>
     {% empty %}

@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>Удалить фильм</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
 </head>
 <body>
 <h2>Удалить фильм: "{{ movie.title }}"?</h2>
