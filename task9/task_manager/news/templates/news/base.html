@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}News Portal{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'news/css/styles.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="blue lighten-2 white-text center-align" style="padding: 10px;">
+    <h1><a href="{% url 'home' %}" class="white-text">News Portal</a></h1>
+</header>
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="blue lighten-2 white-text center-align" style="padding: 10px; margin-top: 20px;">
+    <a href="{% url 'home' %}" class="white-text">News Portal</a>
+</footer>
+
+</body>
+</html>
