@@ -1,16 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ movie.title }}</title>
-</head>
-<body>
 <h1>{{ movie.title }}</h1>
-<img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="200">
-<p><strong>Дата выхода:</strong> {{ movie.release_date }}</p>
-<p><strong>Страна:</strong> {{ movie.country }}</p>
-<p><strong>Рейтинг:</strong> {{ movie.rating }}</p>
 <p>{{ movie.description }}</p>
-<a href="{% url 'movie_list' %}">Назад к списку</a>
-</body>
-</html>
+<p>Жанр: {{ movie.genre.name }}</p>
+<p>Дата: {{ movie.release_date }}</p>
+<p>Страна: {{ movie.country }}</p>
+<p>Рейтинг: {{ movie.rating }}</p>
+<p>Количество отзывов: {{ movie.reviews_count }}</p>
+
+<hr>
+<h2>Отзывы</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить отзыв</button>
+</form>
+
+<div class="reviews">
+    {% for review in reviews %}
+        <div class="card">
+            <div class="card-header">{{ review.username }} | {{ review.created_at }}</div>
+            <div class="card-body">{{ review.text }}</div>
+            <form action="{% url 'review_delete' movie_pk=movie.pk review_pk=review.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+            </form>
+        </div>
+    {% empty %}
+        <p>Отзывов пока нет.</p>
+    {% endfor %}
+</div>

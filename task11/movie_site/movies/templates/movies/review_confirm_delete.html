@@ -1,0 +1,7 @@
+<h2>Удалить отзыв?</h2>
+<p>{{ review.text }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+    <a href="{% url 'movie_detail' review.movie.pk %}">Отмена</a>
+</form>
