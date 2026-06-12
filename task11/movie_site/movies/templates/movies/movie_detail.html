@@ -1,35 +1,104 @@
-<!-- Детали фильма -->
-<div class="movie-detail">
-    <h1>{{ movie.title }}</h1>
-    <p>{{ movie.description }}</p>
-    <p>Жанр: {{ movie.genre.name }}</p>
-    <p>Дата: {{ movie.release_date }}</p>
-    <p>Страна: {{ movie.country }}</p>
-    <p>Рейтинг: {{ movie.rating }}</p>
-    <p>Количество отзывов: {{ movie.reviews_count }}</p>
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ movie.title }}</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: radial-gradient(circle at top, #1a1a1a, #000);
+            color: white;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .movie {
+            background: #141414;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            color: #ffd369;
+        }
+
+        .reviews {
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #141414;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #222;
+            color: white;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background: #ffd369;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #00d4ff;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="movie">
+        <h1>{{ movie.title }}</h1>
+        <p>{{ movie.description }}</p>
+        <p>⭐ {{ movie.rating }}</p>
+        <p>{{ movie.release_date }} | {{ movie.country }}</p>
+    </div>
+
+    <h2>Отзывы</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить отзыв</button>
+    </form>
+
+    <div class="reviews">
+        {% for review in reviews %}
+            <div class="card">
+                <b>{{ review.username }}</b>
+                <p>{{ review.text }}</p>
+
+                <form method="post" action="{% url 'review_delete' movie.pk review.pk %}">
+                    {% csrf_token %}
+                    <button>Удалить</button>
+                </form>
+            </div>
+        {% empty %}
+            <p>Нет отзывов</p>
+        {% endfor %}
+    </div>
+
 </div>
 
-<hr>
-
-<h2>Отзывы</h2>
-
-<form method="post" class="review-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn-add-review">Добавить отзыв</button>
-</form>
-
-<div class="reviews">
-    {% for review in reviews %}
-        <div class="card">
-            <div class="card-header">{{ review.username }} | {{ review.created_at|date:"d.m.Y H:i" }}</div>
-            <div class="card-body">{{ review.text }}</div>
-            <form action="{% url 'review_delete' movie_pk=movie.pk review_pk=review.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn-delete">Удалить</button>
-            </form>
-        </div>
-    {% empty %}
-        <p>Отзывов пока нет.</p>
-    {% endfor %}
-</div>
+</body>
+</html>

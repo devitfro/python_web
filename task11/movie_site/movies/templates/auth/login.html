@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Удалить отзыв</title>
+    <title>Вход</title>
+    <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
 
     <style>
         body {
@@ -20,50 +21,43 @@
             background: #141414;
             padding: 30px;
             border-radius: 15px;
-            width: 400px;
-            text-align: center;
-            box-shadow: 0 0 25px rgba(255, 211, 105, 0.12);
+            width: 350px;
+            box-shadow: 0 0 25px rgba(255, 211, 105, 0.15);
         }
 
         h2 {
+            text-align: center;
             color: #ffd369;
-            margin-bottom: 10px;
         }
 
-        .review-text {
-            background: #222;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            color: #ddd;
-            font-size: 14px;
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
         }
 
         button {
             width: 100%;
             padding: 10px;
+            margin-top: 15px;
             border-radius: 8px;
             border: none;
-            background: #ff3b3b;
-            color: white;
+            background: #ffd369;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
         }
 
         button:hover {
-            background: #ff1f1f;
+            background: #ffb703;
         }
 
         a {
-            display: block;
-            margin-top: 12px;
             color: #00d4ff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -71,22 +65,21 @@
 <body>
 
 <div class="card">
-
-    <h2>Удалить отзыв?</h2>
-
-    <div class="review-text">
-        {{ review.text }}
-    </div>
+    <h2>Вход</h2>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Да, удалить</button>
+
+        <label>Логин</label>
+        {{ form.username }}
+
+        <label>Пароль</label>
+        {{ form.password }}
+
+        <button type="submit">Войти</button>
     </form>
 
-    <a href="{% url 'movie_detail' review.movie.pk %}">
-        ← Отмена
-    </a>
-
+    <a href="{% url 'register' %}">Регистрация</a>
 </div>
 
 </body>

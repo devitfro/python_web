@@ -2,35 +2,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Список фильмов</title>
-    {% load static %}
+    <title>Фильмы</title>
     <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
-</head>
-<body>
-<h1>Фильмы</h1>
-<a href="{% url 'movie_create' %}">Добавить фильм</a>
-<form method="get">
-    <label>Сортировать по:</label>
-    <select name="sort" onchange="this.form.submit()">
-        <option value="release_date">Дата выхода</option>
-        <option value="-rating">Рейтинг (по убыванию)</option>
-        <option value="rating">Рейтинг (по возрастанию)</option>
-    </select>
-</form>
 
-<ul>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: radial-gradient(circle at top, #1a1a1a, #000);
+            color: white;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        .header h1 {
+            color: #ffd369;
+            margin: 0;
+        }
+
+        .header a {
+            color: #00d4ff;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        /* GRID */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+            gap: 20px;
+        }
+
+        /* CARD */
+        .card {
+            background: #141414;
+            width: 220px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 211, 105, 0.08);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        .title {
+            color: #ffd369;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .meta {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 10px;
+            background: #ffd369;
+            color: black;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .btn:hover {
+            background: #ffb703;
+        }
+
+        .empty {
+            text-align: center;
+            color: #aaa;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>🎬 MovieCite</h1>
+
+    <div>
+        <a href="{% url 'movie_create' %}">+ Добавить фильм</a>
+        <a href="{% url 'logout' %}">Выйти</a>
+    </div>
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
     {% for movie in movies %}
-    <li>
-        <a href="{% url 'movie_detail' movie.pk %}">
-            <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="100">
-            {{ movie.title }} ({{ movie.release_date }}) - Рейтинг: {{ movie.rating }}
-        </a>
-        <a href="{% url 'movie_update' movie.pk %}">Редактировать</a>
-        <a href="{% url 'movie_delete' movie.pk %}">Удалить</a>
-    </li>
+        <div class="card">
+            <a href="{% url 'movie_detail' movie.pk %}">
+                <img src="{{ movie.poster.url }}">
+            </a>
+
+            <div class="card-body">
+                <div class="title">{{ movie.title }}</div>
+                <div class="meta">⭐ {{ movie.rating }}</div>
+                <div class="meta">{{ movie.release_date }}</div>
+
+                <a class="btn" href="{% url 'movie_detail' movie.pk %}">
+                    Смотреть
+                </a>
+            </div>
+        </div>
+
     {% empty %}
-    <li>Фильмов пока нет</li>
+        <div class="empty">
+            Фильмов пока нет 😢
+        </div>
     {% endfor %}
-</ul>
+
+</div>
+
 </body>
 </html>

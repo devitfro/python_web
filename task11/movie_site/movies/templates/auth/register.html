@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Добавить фильм</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
 
     <style>
@@ -21,7 +21,7 @@
             background: #141414;
             padding: 30px;
             border-radius: 15px;
-            width: 400px;
+            width: 350px;
             box-shadow: 0 0 25px rgba(255, 211, 105, 0.15);
         }
 
@@ -30,14 +30,17 @@
             color: #ffd369;
         }
 
-        input, textarea, select {
+        input {
             width: 100%;
             padding: 10px;
-            margin-top: 8px;
+            margin-top: 10px;
             border-radius: 8px;
             border: none;
-            background: #222;
-            color: white;
+        }
+
+        small {
+            color: #aaa;
+            font-size: 12px;
         }
 
         button {
@@ -56,10 +59,10 @@
         }
 
         a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
             color: #00d4ff;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -67,15 +70,25 @@
 <body>
 
 <div class="card">
-    <h2>Добавить фильм</h2>
+    <h2>Регистрация</h2>
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Сохранить</button>
+
+        <label>Логин</label>
+        {{ form.username }}
+
+        <label>Пароль</label>
+        {{ form.password1 }}
+        <small>Минимум 8 символов, нельзя простой пароль</small>
+
+        <label>Повтор пароля</label>
+        {{ form.password2 }}
+
+        <button type="submit">Создать аккаунт</button>
     </form>
 
-    <a href="{% url 'movie_list' %}">← Назад</a>
+    <a href="{% url 'login' %}">Уже есть аккаунт?</a>
 </div>
 
 </body>

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MovieCite</title>
+    <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: radial-gradient(circle at top, #1a1a1a, #000);
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 140px 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            color: #ffd369;
+        }
+
+        .hero p {
+            color: #aaa;
+        }
+
+        .buttons {
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            background: #ffd369;
+            color: black;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #ffb703;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #ffd369;
+            color: #ffd369;
+        }
+
+        .btn-outline:hover {
+            background: #ffd369;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>🎬 MovieCite</h1>
+    <p>Смотри фильмы. Оставляй отзывы. Делись мнением.</p>
+
+    <div class="buttons">
+        <a class="btn" href="{% url 'login' %}">Войти</a>
+        <a class="btn btn-outline" href="{% url 'register' %}">Регистрация</a>
+    </div>
+</div>
+
+</body>
+</html>

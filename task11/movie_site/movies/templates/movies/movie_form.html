@@ -2,17 +2,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} фильм</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
+    <title>Фильм</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: radial-gradient(circle at top, #1a1a1a, #000);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #141414;
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+        }
+
+        h2 {
+            color: #ffd369;
+            text-align: center;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: none;
+            background: #222;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #ffd369;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #00d4ff;
+        }
+    </style>
 </head>
+
 <body>
-<h2>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} фильм</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Сохранить">
-</form>
-<a href="{% url 'movie_list' %}">Назад к списку</a>
+
+<div class="card">
+    <h2>{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'movie_list' %}">← Назад</a>
+</div>
+
 </body>
 </html>
